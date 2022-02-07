@@ -1,0 +1,122 @@
+[
+  {
+    "question": "Какой тег используется внутри тега <map>?",
+    "answers": [
+      "<a>",
+      "<area>",
+      "<map>",
+      "<img>"
+    ],
+    "rightAnswer": "<area>",
+    "points": 2,
+    "id": "t5DmJTZAcG"
+  },
+  {
+    "question": "Какого значение атрибута type элемента <input> не существует?",
+    "answers": [
+      "date",
+      "month",
+      "week",
+      "day"
+    ],
+    "rightAnswer": "day",
+    "points": 2,
+    "id": "UFmkrPzMCX"
+  },
+  {
+    "question": "Какой тег представляет собой контейнер, внутри которого располагаются элементы <option>, объединенные в одну группу?",
+    "answers": [
+      "options",
+      "optionsgroup",
+      "optgroup",
+      "options-group"
+    ],
+    "rightAnswer": "optgroup",
+    "points": 3,
+    "id": "SB70cyHitA"
+  },
+  {
+    "question": "С помощью какого значения атрибута http-Equiv у тега meta можно перенаправить пользователя на другую страницу?",
+    "answers": [
+      "refresh",
+      "redirect",
+      "restart",
+      "Такого значения не существует"
+    ],
+    "rightAnswer": "refresh",
+    "points": 2,
+    "id": "Xjn1Pqstao"
+  },
+  {
+    "question": " С каким из перечисленных элементов работает элемент <source>?",
+    "answers": [
+      "<img>",
+      "<select>",
+      "<audio>",
+      "Ни с одним из перечисленных"
+    ],
+    "rightAnswer": "<audio>",
+    "points": 2,
+    "id": "hM5LJhjrAS"
+  },
+  {
+    "question": " К какому из перечисленных тегов НЕ применим атрибут autocomplete?",
+    "answers": [
+      "form",
+      "input",
+      "textarea",
+      "Ко всем перечисленным применим"
+    ],
+    "rightAnswer": "Ко всем перечисленным применим",
+    "points": 3,
+    "id": "Qrjm3dn82Y"
+  },
+  {
+    "question": "Какого значения атрибута type у инпутов не существует?",
+    "answers": [
+      "number",
+      "phone",
+      "email",
+      "color"
+    ],
+    "rightAnswer": "phone",
+    "points": 4,
+    "id": "MptxE53vGX"
+  },
+  {
+    "question": "Как создать перетаскиваемый элемент div?",
+    "answers": [
+      "<div draggable></div>",
+      "<div drag></div>",
+      "<div draggable='true'></div>",
+      "<div draggable='draggable'></div>"
+    ],
+    "rightAnswer": "<div draggable='true'></div>",
+    "points": 4,
+    "id": "BcmDIP4ICZ"
+  },
+  {
+    "question": " Какой элемент определяет основной адрес (URL), используемый для всех относительных адресов на странице?",
+    "answers": [
+      "<url></url>",
+      "<a default></a>",
+      "<a base></a>",
+      "<base>"
+    ],
+    "rightAnswer": "<base>",
+    "points": 6,
+    "id": "0QV1-LfWpg"
+  },
+  {
+    "question": " Id какого элемента необходимо указать в атрибуте list тега input, чтобы при наборе текста в этом инпуте, всплывал список вариантов (автокомплит)?",
+    "answers": [
+      "input",
+      "list",
+      "options",
+      "datalist"
+    ],
+    "rightAnswer": "datalist",
+    "points": 2,
+    "id": "Aa_4BsSc_J"
+  }
+]
