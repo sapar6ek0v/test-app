@@ -16,8 +16,8 @@ server.set('json spaces', 2)
 server.use('/api', testRoutes)
 
 server.use(express.static('client/build'))
-server.use("*", (req, res) => {
-    res.sendFile(path.resolve('test/client/build/index.html'))
+server.use('*', (req, res) => {
+    res.sendFile(path.resolve('client/build/index.html'))
 })
 
 server.listen(port, () => {
