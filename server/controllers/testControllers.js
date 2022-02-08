@@ -1,6 +1,5 @@
 import {readFile, writeFile, stat, readdir} from 'fs/promises'
 import {nanoid} from "nanoid";
-import {json} from "express";
 
 
 export const testGet = (req, res) => {
@@ -40,7 +39,7 @@ export const testPost = (req, res) => {
             const test = req.body.map(it => ({...it, id: nanoid(10)}))
 
             writeFile(`./server/data/${category}.json`, JSON.stringify(test), 'utf-8')
-                .then(() => res.json({message:'Yes'}))
+                .then(() => res.json(test))
                 .catch((e) => {
                     res.json({message:e})
                 })
