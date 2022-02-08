@@ -1,0 +1,16 @@
+.answer-card {
+    padding: 40px;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+}
+.answer-btn{
+    background: #7cec77;
+    border-radius: 8px;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    font-weight: bolder;
+}

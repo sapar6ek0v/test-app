@@ -1,0 +1,8 @@
+.header-btn {
+    background: #ec6867;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    text-transform: uppercase;
+    padding: 5px 10px;
+}

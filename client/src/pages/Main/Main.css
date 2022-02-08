@@ -1,0 +1,19 @@
+
+.main-li {
+    background: #ffffff;
+    padding: 20px 30px;
+    margin-bottom: 30px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0 50px 100px -20px, rgba(0, 0, 0, 0.3) 0 30px 60px -30px;
+}
+.main-link {
+    color: #151515;
+    font-weight: bolder;
+    text-decoration: none;
+}
+.main-btn {
+    background: #ec6867;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+    color: white;
+}
