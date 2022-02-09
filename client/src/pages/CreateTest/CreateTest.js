@@ -44,7 +44,13 @@ const CreateTest = () => {
 
                             <div>
                                 <p className='fw-bold mb-4'>QUESTION :</p>
-                                <input {...register('question')} id='question' type="text" className='question-input'/>
+                                <input
+                                    {...register('question', {required : true})}
+                                    id='question'
+                                    type="text"
+                                    className='question-input'
+                                    placeholder='For question...'
+                                />
                             </div>
 
 
@@ -52,22 +58,33 @@ const CreateTest = () => {
                             <div className='d-flex flex-wrap mb-3'>
                                 <div className='col-6'>
                                     <div className='d-flex align-items-center mb-3'>
-                                        <input {...register('rightAnswer')} value={0} name='rightAnswer' type="radio"/>
-                                        <input {...register('answerFirst')} id='answerFirst' type="text" className='answer-input'/>
+                                        <input
+                                            {...register('rightAnswer', {required : true})}
+                                            value={0}
+                                            name='rightAnswer'
+                                            type="radio"
+                                        />
+                                        <input
+                                            {...register('answerFirst', {required : true})}
+                                            id='answerFirst'
+                                            type="text"
+                                            className='answer-input'
+                                            placeholder='For answer...'
+                                        />
                                     </div>
                                     <div className='d-flex align-items-center mb-3'>
-                                        <input {...register('rightAnswer')} value={1} name='rightAnswer' type="radio"/>
-                                        <input {...register('answerSecond')} id='answerSecond' type="text" className='answer-input'/>
+                                        <input {...register('rightAnswer', {required : true})} value={1} name='rightAnswer' type="radio"/>
+                                        <input {...register('answerSecond', {required : true})} id='answerSecond' type="text" className='answer-input' placeholder='For answer...'/>
                                     </div>
                                 </div>
                                 <div className='col-6'>
                                     <div className='d-flex align-items-center mb-3'>
-                                        <input {...register('rightAnswer')} value={2} name='rightAnswer' type="radio"/>
-                                        <input {...register('answerThrid')} id='answerThrid' type="text" className='answer-input'/>
+                                        <input {...register('rightAnswer', {required : true})} value={2} name='rightAnswer' type="radio"/>
+                                        <input {...register('answerThrid', {required : true})} id='answerThrid' type="text" className='answer-input' placeholder='For answer...'/>
                                     </div>
                                     <div className='d-flex align-items-center mb-3'>
-                                        <input {...register('rightAnswer')} value={3} name='rightAnswer' type="radio"/>
-                                        <input {...register('answerFourth')} id='answerFourth' type="text" className='answer-input'/>
+                                        <input {...register('rightAnswer', {required : true})} value={3} name='rightAnswer' type="radio"/>
+                                        <input {...register('answerFourth', {required : true})} id='answerFourth' type="text" className='answer-input' placeholder='For answer...'/>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +92,7 @@ const CreateTest = () => {
 
                             <div className='d-flex align-items-center mb-5'>
                                 <p className='fw-bold'>POINTS :</p>
-                                <input {...register('points')} id='points'  type="number" className='answer-input w-25'/>
+                                <input {...register('points', {required : true})} id='points'  type="number" className='answer-input w-25' placeholder='For points...'/>
 
                             </div>
 
@@ -85,7 +102,7 @@ const CreateTest = () => {
 
                         <div className='py-5'>
                             <p className='fw-bold mb-4'>TEST NAME:</p>
-                            <input onChange={(e) => setCategory(e.target.value)} type="text" className='test-input-title'/>
+                            <input onChange={(e) => setCategory(e.target.value)} type="text" className='test-input-title' placeholder='For test name...'/>
                         </div>
                     </>
                     : <div>
