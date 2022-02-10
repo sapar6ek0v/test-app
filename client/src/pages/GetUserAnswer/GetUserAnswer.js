@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import './GetUserAnswer.css'
 import AnswerCard from "../../components/AnswerCard/AnswerCard.js";
 import TestCard from "../../components/TestCard/TestCard.js";
+import Loader from "../../components/Loader/Loader.js";
 
 const GetUserAnswer = () => {
     const {name} = useParams()
@@ -11,40 +12,46 @@ const GetUserAnswer = () => {
     const [getUserAnswers, setUserGetAnswers] = useState([])
     const [change, toggleChange] = useState(true)
     const [results, setResults] = useState([])
+    const [loader, setLoader] = useState(true)
 
 
     useEffect(() => {
         axios(`/api/test/get-test/${name}`)
             .then(({data}) => {
                 setGetTests(data)
+                setLoader(!loader)
             })
             .catch(e => console.log(e))
     }, [name])
 
 
     const getAnswer = (e, question) => {
-        const truthAnswer = getUserAnswers.filter(it => it.id !== question.id)
+        const truthAnswer = getUserAnswers.filter(it => it._id !== question._id)
         const userAnswer = {
             question: question.question,
-            id: question.id,
+            _id: question._id,
             userAnswer: e.target.value
         }
         setUserGetAnswers([...truthAnswer, userAnswer])
     }
 
     const addToPost = () => {
-        if (getUserAnswers.length === getTests.length) {
+        // if (getUserAnswers.length === getTests.length) {
             axios.post(`/api/test/check-test/${name}`, getUserAnswers)
                 .then(({data}) => {
                     setResults(data.result)
                 })
                 .catch(e => console.log(e))
-            alert("ОК!")
+            // alert("ОК!")
             toggleChange(!change)
-        } else {
-            alert('Нужно отметить все!')
-        }
+        // } else {
+        //     alert('Нужно отметить все!')
+        // }
 
+    }
+
+    if (loader) {
+        return <Loader/>
     }
 
     return (
@@ -53,12 +60,12 @@ const GetUserAnswer = () => {
                 change
                     ? getTests.map(quest => {
                         return (
-                            <TestCard key={quest} getAnswer={getAnswer} quest={quest} />
+                            <TestCard key={quest._id} getAnswer={getAnswer} quest={quest} />
                         )
                     })
                     : results?.map(ans => {
                         return (
-                            <AnswerCard key={ans.id} ans={ans} />
+                            <AnswerCard key={ans._id} ans={ans} />
                         )
                     })
             }

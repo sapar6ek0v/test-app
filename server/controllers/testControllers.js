@@ -1,93 +1,84 @@
-import {readFile, writeFile, stat, readdir} from 'fs/promises'
-import {nanoid} from "nanoid";
+import Test from '../models/testsModel.js'
 
 
 export const testGet = (req, res) => {
     const {category} = req.params
 
-    readFile(`./server/data/${category}.json`, 'utf-8')
-        .then(data => {
-            const test = JSON.parse(data)
-            test.map(it => delete it.rigthAnswer  )
+    Test.findOne({testName:category}).exec((err, data) => {
+        if (err) return res.status(404).json({message: "Error", err})
 
-            res.json(test)
+        if(!data) return res.status(400).json({message: "Not found test", err})
+
+
+        const withoutRightAnswer = data.test.map(it => {
+            const quest = {...it.toObject()}
+            delete quest.rightAnswer
+            return quest
         })
-        .catch(e => res.json({message: e}))
+
+        res.json(withoutRightAnswer)
+    })
+
 }
 
 export const getAllTest = (req, res) => {
 
-    readdir('./server/data')
-        .then(data => {
-            const category = data
-                .filter(it => it !== 'user-points.json')
-                .map(it => it.replace(/\.json$/, ''))
 
-            res.json(category)
-        })
-        .catch(e => res.json({message: e}))
+    Test.find({}).exec((err, data) => {
+        if (err) return res.status(404).json({message: "Error", err})
+
+        const tests = data.map(it => it.testName)
+
+        res.json(tests)
+    })
 }
 
 
 export const testPost = (req, res) => {
     const {category} = req.params
 
+    const newTest = new Test({
+        testName: category,
+        test: req.body
+    })
 
-    stat(`./server/data/${category}.json`)
-        .then(() => res.json({message: 'Choose anther name'}))
-        .catch(() => {
-            const test = req.body.map(it => ({...it, id: nanoid(10)}))
+    newTest.save((err, data) => {
+        if (err) return res.status(404).json({message: "Error", err})
 
-            writeFile(`./server/data/${category}.json`, JSON.stringify(test), 'utf-8')
-                .then(() => res.json(test))
-                .catch((e) => {
-                    res.json({message:e})
-                })
-        })
+        res.json({message: "Ok", data})
+    })
+
 }
-
 
 
 export const checkPost = (req, res) => {
     const {category} = req.params
-    const {username} = req.query
+    // const {username} = req.query
     const userAnswers = req.body
     let totalPoints = 0
 
-    readFile(`./server/data/${category}.json`)
-        .then(data => {
-            const result = JSON.parse(data).map(quest => {
-                const currentQuestion = userAnswers.find(it => it.id === quest.id)
-                quest.result = quest.rightAnswer === currentQuestion.userAnswer
-                if (quest.result) {
-                    totalPoints += quest.points
-                }
-                return quest
-            })
-            console.log(req.body)
 
-            const response = {
-                totalPoints,
-                result
+    Test.findOne({testName:category}).exec((err, data) => {
+        if (err) return res.status(404).json({message: "Error", err})
+
+        if(!data) return res.status(400).json({message: "Not found test", err})
+
+        const result = data.test.map(it => {
+            const quest = {...it.toObject()}
+            const currentQuestion = userAnswers.find(it => String(it._id) === String(it._id))
+            quest.result = quest.rightAnswer === currentQuestion.userAnswer
+            if (quest.result) {
+                totalPoints += quest.points
             }
-            console.log(totalPoints)
-
-            res.json(response)
-
-            readFile(`./server/data/user-points.json`)
-                .then(data => {
-                    const userPoints = JSON.parse(data)
-                    userPoints.push({
-                        id: nanoid(10),
-                        username,
-                        totalPoints,
-                        category : category
-                    })
-
-                    writeFile('./server/data/user-points.json', JSON.stringify(userPoints), 'utf-8')
-                        // .then(() => res.json(userPoints))
-                        // .then((e) => res.json({message: e}))
-                })
+            return quest
         })
-        .catch(e => res.json({message: e}))
+
+        const response = {
+            totalPoints,
+            result
+        }
+
+        res.json(response)
+    })
+
 }

@@ -9,7 +9,7 @@ const CreateTest = () => {
     const [category, setCategory] = useState('')
     const {register, handleSubmit, reset} = useForm()
     const [test, setTest] = useState([])
-    const [change, toggleChange] = useState(true)
+    // const [change, toggleChange] = useState(true)
 
 
     const addTestQuestion = (data) => {
@@ -29,7 +29,7 @@ const CreateTest = () => {
             .then(({data}) => {
                 setTest(data)
                 console.log(data)
-                toggleChange(!change)
+                // toggleChange(!change)
                 }
             )
             .catch(e => console.log(e))
@@ -37,9 +37,9 @@ const CreateTest = () => {
 
     return (
         <div className='container'>
-            {
-                change
-                    ? <>
+            {/*{*/}
+            {/*    // change ? */}
+                    <>
                         <form onSubmit={handleSubmit(addTestQuestion)}>
 
                             <div>
@@ -105,18 +105,18 @@ const CreateTest = () => {
                             <input onChange={(e) => setCategory(e.target.value)} type="text" className='test-input-title' placeholder='For test name...'/>
                         </div>
                     </>
-                    : <div>
-                        {
-                            test.map(it => {
-                                return (
-                                    <TestCard key={it.id} quest={it}/>
-                                )
-                            })
-                        }
-                    </div>
-            }
+            {/*        : <div>*/}
+            {/*            {*/}
+            {/*                test.map(it => {*/}
+            {/*                    return (*/}
+            {/*                        <TestCard key={it._id} quest={it}/>*/}
+            {/*                    )*/}
+            {/*                })*/}
+            {/*            }*/}
+            {/*        </div>*/}
+            {/*}*/}
 
-            <button hidden={!change} onClick={createNewTest} className='create-btn mx-3'>Create Test</button>
+            <button  onClick={createNewTest} className='create-btn mx-3'>Create Test</button>
         </div>
     );
 };

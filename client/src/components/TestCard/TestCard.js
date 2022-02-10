@@ -15,7 +15,7 @@ const TestCard = ({quest, getAnswer}) => {
                                     <input onChange={(e) => getAnswer(e, quest)}
                                            value={answer}
                                            type='radio'
-                                           name={quest.id}
+                                           name={quest._id}
                                     />
                                     <label className='px-2'>{answer}</label>
                                 </div>
